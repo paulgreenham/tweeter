@@ -23,14 +23,14 @@ const Tweeter = function(){
     let _currentPostNumber = 2
     let _currentCommentNumber = 6
 
-    const _getPosts = () => _posts
+    const getPosts = () => _posts
 
-    const _addPost = function(inputText){
+    const addPost = function(inputText){
         _currentPostNumber ++
         _posts.push({text: inputText, id: "p" + _currentPostNumber, comments: []})
     }
 
-    const _removePost = function(postNumber){
+    const removePost = function(postNumber){
         for(let index in _posts){
             if(_posts[index].id == postNumber){
                 _posts.splice(index, 1)
@@ -38,7 +38,7 @@ const Tweeter = function(){
         }
     }
 
-    const _addComment = function(inputText, postID){
+    const addComment = function(inputText, postID){
         for(let post of _posts){
             if(post.id == postID){
                _currentCommentNumber++
@@ -47,7 +47,7 @@ const Tweeter = function(){
         }
     }
 
-    const _removeComment = function(postID, commentID){
+    const removeComment = function(postID, commentID){
         for(let post of _posts){
             if(post.id == postID){
                 for(let index in post.comments){
@@ -60,25 +60,10 @@ const Tweeter = function(){
     }
 
     return {
-        getPosts: _getPosts,
-        addPost: _addPost,
-        removePost: _removePost,
-        addComment: _addComment,
-        removeComment: _removeComment
+        getPosts: getPosts,
+        addPost: addPost,
+        removePost: removePost,
+        addComment: addComment,
+        removeComment: removeComment
     }
 }
-
-const tweeter = Tweeter()
-
-tweeter.addPost("This is my own post!")
-console.log(tweeter.getPosts())
-
-tweeter.removePost("p1")
-console.log(tweeter.getPosts())
-
-tweeter.addComment("Damn straight it is!", "p3")
-tweeter.addComment("Second the best!", "p2")
-console.log(tweeter.getPosts())
-
-tweeter.removeComment("p2", "c6")
-console.log(tweeter.getPosts())
