@@ -75,4 +75,5 @@ body{
 .delete-comment{
     cursor: pointer;
     color: #e74c3c;
+    margin-right: 5px;
 }
